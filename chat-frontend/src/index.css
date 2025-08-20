@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Nata+Sans:wght@500&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@import "tailwindcss";
+
+* {
+  font-family: "Nata Sans", sans-serif;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
