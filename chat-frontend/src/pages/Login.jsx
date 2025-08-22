@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import assets from '../assets/assets'
+import { AuthContext } from '../context/AuthContext.jsx'
+import toast from 'react-hot-toast'
 
 const Login = () => {
 
@@ -10,10 +12,21 @@ const Login = () => {
   const [bio, setBio] = useState('')
   const [isDataSubmitted, setIsDataSubmitted] = useState(false)
 
+  const {login} = useContext(AuthContext)
+
   const handleOnSubmit = (e) => {
     e.preventDefault()
+    
     if (currentState === 'Sign up' && !isDataSubmitted) {
+      if (!fullName || !email || !password) {
+        toast.error("Please fill all required fields")
+        return
+      }
       setIsDataSubmitted(true)
+    } else if (currentState === 'Sign up' && isDataSubmitted) {
+      login("signup", {fullName, email, password, bio: bio || ""})
+    } else {
+      login("login", {email, password})
     }
   }
 
